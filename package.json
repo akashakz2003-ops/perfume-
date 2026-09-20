@@ -2,11 +2,8 @@
   "name": "raz-oud-3d-hero",
   "version": "1.0.0",
   "description": "RAZ Oud Luxury 3D Video Hero Scroll Experience",
-  "main": "server.js",
   "scripts": {
-    "start": "agy-node server.js",
-    "dev": "agy-node server.js",
-    "serve": "agy-node server.js",
-    "preview": "agy-node server.js"
+    "start": "node server.js",
+    "dev": "node server.js"
   }
 }
