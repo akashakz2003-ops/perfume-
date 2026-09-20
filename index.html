@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RAZ OUD | Haute Parfumerie — Royal Obsidian Extrait</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Silent Preload Hairline Indicator -->
+  <div id="loadingLine" class="loading-line"></div>
+
+  <!-- Luxury Minimal Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-inner">
+      <a href="#top" class="brand-crest" id="headerBrand">
+        <span class="crest-symbol">❖</span>
+        <span class="crest-name">RAZ</span>
+        <span class="crest-sub">PARFUMS</span>
+      </a>
+      <nav class="header-nav">
+        <a href="#hero" class="nav-item" id="navHero">THE DESCENT</a>
+        <a href="#detailsSection" class="nav-item" id="navDetails">THE FLACON</a>
+        <button type="button" class="btn-gold-header" id="headerAcquireBtn">ACQUIRE</button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Fullscreen Fixed Viewport for 3D Falcon Descent Animation -->
+  <div class="hero-viewport" id="heroViewport">
+    <canvas id="hero-canvas"></canvas>
+    <div class="canvas-vignette"></div>
+
+    <!-- Exclusive Brand Reveal (Right Side, Revealed Only After Landing) -->
+    <div class="brand-container" id="brandContainer" aria-hidden="true">
+      <h1 class="brand-name">RAZ</h1>
+      <p class="brand-tagline">HAUTE PARFUMERIE EXTRAIT</p>
+    </div>
+
+    <!-- Interactive Single-Click Action Cue -->
+    <div class="hero-action-cue" id="heroActionCue">
+      <button type="button" class="btn-hero-play" id="btnHeroPlay" aria-label="Click to play 3D descent animation">
+        <span class="play-pulse-ring"></span>
+        <span class="play-icon-glow">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </span>
+        <span class="play-text-group">
+          <span class="play-main-text">CLICK TO EXPERIENCE THE FLIGHT</span>
+          <span class="play-sub-text">SINGLE CLICK PLAYS FULL 3D ANIMATION &amp; REVEALS FLACON</span>
+        </span>
+        <span class="play-sparkle">❖</span>
+      </button>
+      <div class="hero-click-hint">
+        <span class="hint-mouse-icon">🖱</span>
+        <span>CLICK ANYWHERE ON SCREEN TO BEGIN</span>
+      </div>
+    </div>
+
+    <!-- Skip to Flacon Button (Visible during playback) -->
+    <button type="button" class="btn-skip-cinematic" id="btnSkipCinematic" aria-label="Skip to perfume flacon">
+      <span>SKIP TO FLACON</span>
+      <span class="skip-arrow">→</span>
+    </button>
+  </div>
+
+  <!-- Physical Scroll Track -->
+  <div class="scroll-track" id="scrollTrack"></div>
+
+  <!-- NEXT SECTION: RAZ PERFUME SHOWCASE (Image on Left, Details on Right) -->
+  <section class="details-section" id="detailsSection">
+    <div class="details-section-glow"></div>
+    <div class="details-container">
+
+      <!-- Section Header -->
+      <div class="section-intro">
+        <div class="gold-badge">
+          <span class="badge-sparkle">❖</span>
+          <span>HAUTE PARFUMERIE • PRIVATE COLLECTION</span>
+          <span class="badge-sparkle">❖</span>
+        </div>
+        <h2 class="section-main-title">THE ROYAL OBSIDIAN FLACON</h2>
+        <p class="section-main-sub">AN UNTAMED DESCENT FROM CELESTIAL HEIGHTS INTO SOVEREIGN REGAL LUXURY</p>
+        <div class="section-title-line"></div>
+      </div>
+
+      <!-- Two-Column Showcase Grid: Left Image, Right Details -->
+      <div class="showcase-grid">
+
+        <!-- LEFT COLUMN: Perfume Visual Showcase -->
+        <div class="showcase-left">
+          <div class="perfume-frame-card" id="perfumeFrameCard">
+            <div class="frame-halo"></div>
+            
+            <!-- Top Badges -->
+            <div class="frame-tag-top">
+              <span class="tag-accent">EXTRAIT DE PARFUM</span>
+              <span class="tag-dot">•</span>
+              <span class="tag-detail">35% CONCENTRATION</span>
+            </div>
+
+            <!-- Main Perfume Image -->
+            <div class="frame-image-wrapper">
+              <img 
+                id="showcaseMainImg" 
+                src="3D%20VIDEO%20HEROSECTION/ezgif-frame-240.png" 
+                alt="RAZ Oud Royal Obsidian Flacon"
+                class="perfume-main-image"
+              >
+            </div>
+
+            <!-- Bottom Badges -->
+            <div class="frame-tag-bottom">
+              <span class="badge-icon">❖</span>
+              <span>HAND-ENGRAVED SOLID BRASS FALCON • NUMBERED EDITION</span>
+            </div>
+          </div>
+
+          <!-- Interactive Perspectives Switcher -->
+          <div class="perspective-nav">
+            <span class="perspective-label">PERSPECTIVES:</span>
+            <button type="button" class="btn-perspective active" data-frame="240" data-caption="Full Obsidian Flacon &amp; Golden Falcon">
+              <span class="p-num">01</span>
+              <span class="p-name">FLACON REVEAL</span>
+            </button>
+            <button type="button" class="btn-perspective" data-frame="165" data-caption="Golden Filigree Falcon Crown">
+              <span class="p-num">02</span>
+              <span class="p-name">ALCHEMIC CROWN</span>
+            </button>
+            <button type="button" class="btn-perspective" data-frame="85" data-caption="The Sovereign Apex Flight">
+              <span class="p-num">03</span>
+              <span class="p-name">APEX FLIGHT</span>
+            </button>
+          </div>
+          <p class="perspective-caption" id="perspectiveCaption">Full Obsidian Flacon &amp; Golden Falcon</p>
+
+          <!-- Interactive Purchase & WhatsApp Order Configuration Panel (Left Column) -->
+          <div class="purchase-panel" id="purchasePanel">
+            <div class="panel-header">
+              <span class="panel-icon">❖</span>
+              <span class="panel-title">PURCHASE &amp; ORDER CONFIGURATION</span>
+            </div>
+
+            <!-- 1. Select ML / Volume -->
+            <div class="selector-group">
+              <label class="group-label">
+                <span class="label-number">01.</span>
+                <span>SELECT VOLUME (ETHRA ML VENAM):</span>
+              </label>
+              <div class="option-grid size-grid">
+                <button type="button" class="btn-select btn-size active" data-ml="100ml" data-unitprice="500">
+                  <span class="sel-primary">100 ML</span>
+                  <span class="sel-sub">Grand Obsidian Flacon</span>
+                  <span class="sel-price">₹500</span>
+                </button>
+                <button type="button" class="btn-select btn-size" data-ml="50ml" data-unitprice="250">
+                  <span class="sel-primary">50 ML</span>
+                  <span class="sel-sub">Voyage Obsidian Flacon</span>
+                  <span class="sel-price">₹250</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 2. Select Pieces / Pack (Ethra Piece) -->
+            <div class="selector-group">
+              <label class="group-label">
+                <span class="label-number">02.</span>
+                <span>SELECT PIECES (ETHRA PIECE VENAM):</span>
+              </label>
+              <div class="option-grid pack-grid">
+                <button type="button" class="btn-select btn-piece active" data-pieces="1 Piece (Single Bottle)">
+                  <span class="sel-primary">1 PIECE</span>
+                  <span class="sel-sub">Single Flacon</span>
+                </button>
+                <button type="button" class="btn-select btn-piece" data-pieces="2 Pieces (Duo Pack)">
+                  <span class="sel-primary">2 PIECES</span>
+                  <span class="sel-sub">Duo Gift Pack</span>
+                </button>
+                <button type="button" class="btn-select btn-piece" data-pieces="3 Pieces (Collector Trio)">
+                  <span class="sel-primary">3 PIECES</span>
+                  <span class="sel-sub">Trio Collector Set</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- 3. Select Bottle Quantity (Ethra Bottle) -->
+            <div class="selector-group">
+              <label class="group-label">
+                <span class="label-number">03.</span>
+                <span>SELECT BOTTLES (ETHRA BOTTLE PERFUME VENAM):</span>
+              </label>
+              <div class="qty-control-row">
+                <div class="qty-stepper">
+                  <button type="button" class="btn-qty" id="qtyMinus" aria-label="Decrease quantity">−</button>
+                  <span class="qty-number" id="qtyDisplay">1</span>
+                  <button type="button" class="btn-qty" id="qtyPlus" aria-label="Increase quantity">+</button>
+                </div>
+                <div class="qty-quick-buttons">
+                  <button type="button" class="btn-quick-qty active" data-qty="1">1 Bottle</button>
+                  <button type="button" class="btn-quick-qty" data-qty="2">2 Bottles</button>
+                  <button type="button" class="btn-quick-qty" data-qty="3">3 Bottles</button>
+                  <button type="button" class="btn-quick-qty" data-qty="5">5 Bottles</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Live Order Summary Card -->
+            <div class="order-summary-card">
+              <div class="summary-line">
+                <span class="sum-label">CHOSEN VOLUME:</span>
+                <span class="sum-value" id="summaryVolume">100 ML (Grand Flacon)</span>
+              </div>
+              <div class="summary-line">
+                <span class="sum-label">PIECE SET:</span>
+                <span class="sum-value" id="summaryPiece">1 Piece (Single Bottle)</span>
+              </div>
+              <div class="summary-line">
+                <span class="sum-label">BOTTLE COUNT:</span>
+                <span class="sum-value" id="summaryBottleCount">1 Bottle</span>
+              </div>
+              <div class="summary-line total-line">
+                <span class="sum-total-label">TOTAL AMOUNT:</span>
+                <span class="sum-total-amount" id="summaryTotal">₹500 INR</span>
+              </div>
+            </div>
+
+            <!-- Direct WhatsApp Order Button -->
+            <div class="purchase-actions">
+              <button type="button" class="btn-whatsapp-order" id="orderNowWhatsAppBtn">
+                <span class="wa-icon">
+                  <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                    <path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0012.04 2zm5.79 14.12c-.24.68-1.4 1.25-1.93 1.33-.51.08-1.18.11-3.41-.81-2.48-1.02-4.08-3.56-4.2-3.72-.12-.17-1-1.33-1-2.54 0-1.21.63-1.81.86-2.05.23-.24.5-.3.67-.3.17 0 .34.002.49.01.15.01.36-.06.56.43.21.5.71 1.74.78 1.87.06.13.1.28.02.45-.09.17-.13.28-.26.43-.13.15-.27.33-.39.45-.13.12-.26.26-.11.52.15.26.67 1.11 1.44 1.79.99.88 1.83 1.16 2.09 1.29.26.13.41.11.56-.06.15-.17.65-.76.82-1.02.17-.26.34-.21.58-.13.24.09 1.51.71 1.77.84.26.13.43.19.49.3.06.11.06.66-.18 1.34z"/>
+                  </svg>
+                </span>
+                <span class="btn-wa-text">ORDER NOW VIA WHATSAPP</span>
+                <span class="btn-wa-badge" id="btnWaBadge">₹500</span>
+              </button>
+              <button type="button" class="btn-gold-ghost" id="returnTopBtn">
+                <span>RETURN TO SUMMIT</span>
+                <span class="btn-icon">↑</span>
+              </button>
+            </div>
+
+            <!-- WhatsApp Number Configuration Pill -->
+            <div class="whatsapp-target-bar">
+              <span class="target-label">WHATSAPP ORDERS ROUTED TO:</span>
+              <span class="target-phone" id="targetPhoneDisplay">+91 98765 43210</span>
+              <button type="button" class="btn-edit-phone" id="btnEditPhone" title="Change WhatsApp Number">✎ CHANGE NUMBER</button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- RIGHT COLUMN: Perfume Details Showcase -->
+        <div class="showcase-right">
+          <div class="details-content-wrapper">
+            
+            <div class="product-identity">
+              <span class="product-provenance">GRASSE • DUBAI • LIMITED PRIVATE HARVEST</span>
+              <h3 class="product-heading">RAZ OUD</h3>
+              <p class="product-subheading">Haute Parfumerie Extrait de Parfum</p>
+              
+              <div class="price-allocation-bar">
+                <div class="price-badge">
+                  <span class="price-currency">₹</span>
+                  <span class="price-amount" id="productPrice">500</span>
+                  <span class="price-currency">INR</span>
+                </div>
+                <div class="price-divider"></div>
+                <div class="allocation-info">
+                  <span class="alloc-title">PRIVATE ALLOCATION</span>
+                  <span class="alloc-edition">Flacon <strong id="specimenNumber">#084</strong> of 500 Worldwide</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Perfume Poetic Narrative -->
+            <div class="product-story">
+              <p>
+                Forged in shadows and crowned in molten gold, <strong>RAZ OUD</strong> is an extraordinary olfactory sculpture. Anchored by precious 24-year-aged wild agarwood distilled from the protected mountain groves of Koh Kong, Cambodia, its unbridled heart pulses with sacred Dhofar frankincense, crimson Persian saffron, and velvety Taif mountain roses.
+              </p>
+              <p>
+                Enclosed in a monolithic hand-cut obsidian crystal vessel, guarded by an apex falcon forged from solid brass filigree. A scent created only for those who command the celestial skies.
+              </p>
+            </div>
+
+            <!-- Olfactory Architecture (Top, Heart, Base Notes) -->
+            <div class="olfactory-pyramid">
+              <div class="pyramid-header">
+                <span class="pyramid-icon">❖</span>
+                <span class="pyramid-title">OLFACTORY ARCHITECTURE</span>
+              </div>
+
+              <div class="notes-tier tier-top">
+                <div class="tier-label">
+                  <span class="tier-name">TOP NOTES</span>
+                  <span class="tier-sensation">THE CELESTIAL DESCENT</span>
+                </div>
+                <div class="tier-ingredients">
+                  <span class="ingredient">Wild Smoked Dhofar Frankincense</span>
+                  <span class="dot">•</span>
+                  <span class="ingredient">Persian Red Gold Saffron</span>
+                  <span class="dot">•</span>
+                  <span class="ingredient">Calabrian Sun-Drenched Bergamot</span>
+                </div>
+              </div>
+
+              <div class="notes-tier tier-heart">
+                <div class="tier-label">
+                  <span class="tier-name">HEART NOTES</span>
+                  <span class="tier-sensation">THE CROWN OF OUD</span>
+                </div>
+                <div class="tier-ingredients">
+                  <span class="ingredient">24-Year Wild Koh Kong Agarwood (Cambodian Oud)</span>
+                  <span class="dot">•</span>
+                  <span class="ingredient">Taif Damascena Velvet Rose</span>
+                  <span class="dot">•</span>
+                  <span class="ingredient">Natural Deep Marine Ambergris</span>
+                </div>
+              </div>
+
+              <div class="notes-tier tier-base">
+                <div class="tier-label">
+                  <span class="tier-name">BASE NOTES</span>
+                  <span class="tier-sensation">SOVEREIGN LONGEVITY</span>
+                </div>
+                <div class="tier-ingredients">
+                  <span class="ingredient">Aged Royal Saddle Leather</span>
+                  <span class="dot">•</span>
+                  <span class="ingredient">Mysore White Sandalwood</span>
+                  <span class="dot">•</span>
+                  <span class="ingredient">Rare Smoked Birch</span>
+                  <span class="dot">•</span>
+                  <span class="ingredient">Cashmere Resin</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Artisanal Specifications Grid -->
+            <div class="specs-matrix">
+              <div class="spec-cell">
+                <span class="spec-key">CONCENTRATION</span>
+                <span class="spec-val">35% Pure Extrait</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-key">LONGEVITY</span>
+                <span class="spec-val">24+ Hours on Skin</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-key">SILLAGE</span>
+                <span class="spec-val">Monumental &amp; Sovereign</span>
+              </div>
+              <div class="spec-cell">
+                <span class="spec-key">FLACON CRAFT</span>
+                <span class="spec-val">Cut Obsidian &amp; Brass</span>
+              </div>
+            </div>
+
+
+
+            <!-- Trust & Concierge Assurance -->
+            <div class="concierge-guarantee">
+              <div class="guarantee-item">
+                <span class="g-icon">❖</span>
+                <span>Numbered Certificate of Authenticity Signed by Master Perfumer</span>
+              </div>
+              <div class="guarantee-item">
+                <span class="g-icon">❖</span>
+                <span>Complimentary Insured White-Glove Concierge Courier Worldwide</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Footer Section Note -->
+      <footer class="showcase-footer">
+        <div class="footer-crest">❖</div>
+        <p class="footer-title">RAZ PARFUMS INTERNATIONAL • HAUTE PARFUMERIE DIVISION</p>
+        <p class="footer-copy">All rights reserved © 2026. Hand-numbered limited private reserve flacon editions.</p>
+      </footer>
+
+    </div>
+  </section>
+
+  <!-- Luxury Reservation Modal (Self-Contained on Home Page) -->
+  <div id="acquireModal" class="luxury-modal hidden" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-backdrop" id="modalBackdrop"></div>
+    <div class="modal-dialog">
+      <button class="modal-close" id="modalClose" aria-label="Close modal">✕</button>
+      
+      <div class="modal-header">
+        <span class="modal-emblem">❖</span>
+        <span class="modal-eyebrow">HAUTE PARFUMERIE • PRIVATE ALLOCATION</span>
+        <h3 class="modal-title">RESERVE RAZ OUD</h3>
+        <p class="modal-subtitle">Limited Edition of 500 Numbered Obsidian Flacons Worldwide</p>
+      </div>
+
+      <div class="modal-body">
+        <div class="bottle-preview-card">
+          <div class="bottle-badge">ALLOCATED SPECIMEN: <strong id="modalAllocatedNumber">#084 / 500</strong></div>
+          <div class="concentration-tag" id="modalVolumeTag">100ML GRAND FLACON • 35% PURE PARFUM EXTRAIT</div>
+        </div>
+
+        <form id="reserveForm" class="reserve-form">
+          <div class="form-group">
+            <label for="collectorName">COLLECTOR / PATRON NAME</label>
+            <input type="text" id="collectorName" placeholder="Title &amp; Full Name" required>
+          </div>
+          <div class="form-group">
+            <label for="collectorEmail">PRIVATE CONCIERGE EMAIL</label>
+            <input type="email" id="collectorEmail" placeholder="collector@residence.com" required>
+          </div>
+          <button type="submit" class="btn-gold-primary submit-reserve" id="reserveSubmitBtn">
+            <span>CONFIRM PRIVATE ALLOCATION</span>
+            <span class="btn-arrow">→</span>
+          </button>
+        </form>
+
+        <div id="reserveSuccess" class="reserve-success hidden">
+          <div class="success-icon">❖</div>
+          <h4>ALLOCATION SECURED</h4>
+          <p class="success-msg">Flacon <strong id="confirmedNumber">#084</strong> has been reserved. Our Private Concierge will contact you within 2 hours with shipping instructions and your certificate of authenticity.</p>
+          <button type="button" class="btn-gold-ghost close-success" id="closeSuccessBtn">RETURN TO EXPERIENCE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

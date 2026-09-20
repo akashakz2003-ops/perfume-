@@ -1,0 +1,1715 @@
+/* ==========================================================================
+   RAZ | HAUTE PARFUMERIE — CINEMATIC SCROLL-DRIVEN HERO
+   Pure luxury editorial art direction. Zero extraneous elements.
+   ========================================================================== */
+
+:root {
+  --color-bg: #060608;
+  --color-bg-deep: #040406;
+  --color-gold-100: #fff7d6;
+  --color-gold-300: #e5c365;
+  --color-gold-500: #c29b38;
+  --color-gold-700: #8c6e1e;
+  --color-gold-glow: rgba(212, 175, 55, 0.32);
+  --font-brand: 'Cinzel', serif;
+  --ease-cinematic: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background-color: var(--color-bg);
+  color: var(--color-gold-100);
+  font-family: var(--font-brand);
+  overflow-x: hidden;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-gold-700) var(--color-bg);
+}
+
+body {
+  min-height: 100vh;
+  background-color: var(--color-bg);
+  color: var(--color-gold-100);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Elegant Minimal Scrollbar */
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--color-gold-700), var(--color-gold-500), var(--color-gold-700));
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-gold-300);
+}
+
+/* ==========================================================================
+   SILENT HAIRLINE PRELOAD INDICATOR (Zero Typography)
+   ========================================================================== */
+.loading-line {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--color-gold-500), var(--color-gold-100), var(--color-gold-500), transparent);
+  box-shadow: 0 0 10px var(--color-gold-glow);
+  z-index: 9999;
+  transition: width 0.25s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s ease;
+  pointer-events: none;
+}
+
+.loading-line.completed {
+  opacity: 0;
+}
+
+/* ==========================================================================
+   HERO FIXED VIEWPORT & CANVAS
+   ========================================================================== */
+.hero-viewport {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: 1;
+  background-color: var(--color-bg);
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+#hero-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Seamless Vignette: Blends Left-Positioned Product Frame into Deep Luxury Canvas */
+.canvas-vignette {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at 35% 55%, transparent 45%, rgba(6, 6, 8, 0.35) 75%, var(--color-bg) 100%),
+    linear-gradient(to right, transparent 40%, rgba(6, 6, 8, 0.45) 60%, rgba(6, 6, 8, 0.85) 80%, var(--color-bg) 100%),
+    linear-gradient(to bottom, rgba(6, 6, 8, 0.5) 0%, transparent 15%, transparent 85%, var(--color-bg) 100%);
+}
+
+/* ==========================================================================
+   MINIMAL LUXURY FLOATING HEADER
+   ========================================================================== */
+.site-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  padding: 1.5rem 3.5rem;
+  background: linear-gradient(180deg, rgba(6, 6, 8, 0.85) 0%, rgba(6, 6, 8, 0.2) 80%, transparent 100%);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+  transition: all 0.4s ease;
+}
+
+.header-inner {
+  max-width: 1500px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.brand-crest {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: #fff;
+}
+
+.crest-symbol {
+  color: var(--color-gold-300);
+  font-size: 1.2rem;
+  filter: drop-shadow(0 0 8px var(--color-gold-glow));
+}
+
+.crest-name {
+  font-family: var(--font-brand);
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  color: #fff;
+}
+
+.crest-sub {
+  font-size: 0.55rem;
+  letter-spacing: 0.4em;
+  color: var(--color-gold-500);
+  padding-left: 0.6rem;
+  border-left: 1px solid rgba(212, 175, 55, 0.3);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+.header-nav {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+}
+
+.nav-item {
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: none;
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+  position: relative;
+  padding: 0.3rem 0;
+  transition: color 0.3s ease;
+}
+
+.nav-item:hover {
+  color: var(--color-gold-300);
+}
+
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background: var(--color-gold-300);
+  transition: width 0.3s ease;
+  box-shadow: 0 0 8px var(--color-gold-glow);
+}
+
+.nav-item:hover::after {
+  width: 100%;
+}
+
+.btn-gold-header {
+  padding: 0.55rem 1.4rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.22em;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: var(--color-gold-100);
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid var(--color-gold-500);
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-gold-header:hover {
+  background: var(--color-gold-300);
+  color: #060608;
+  box-shadow: 0 0 20px var(--color-gold-glow);
+}
+
+/* ==========================================================================
+   RIGHT-ALIGNED BRAND REVEAL (RAZ)
+   Revealed only after falcon landing is complete.
+   ========================================================================== */
+.brand-container {
+  position: fixed;
+  top: 50%;
+  right: clamp(5vw, 9vw, 15vw);
+  transform: translateY(-50%);
+  z-index: 20;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  will-change: opacity, transform, filter;
+  text-align: left;
+}
+
+.brand-name {
+  font-family: var(--font-brand);
+  font-size: clamp(3.8rem, 8.5vw, 8rem);
+  font-weight: 500;
+  letter-spacing: clamp(0.35em, 1.2vw, 0.55em);
+  text-transform: uppercase;
+  margin: 0;
+  padding-left: clamp(0.35em, 1.2vw, 0.55em);
+  line-height: 1;
+  color: var(--color-gold-300);
+  background: linear-gradient(135deg, #fff7d6 0%, #e2be64 32%, #af882a 65%, #f6e6ac 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 45px rgba(212, 175, 55, 0.36)) drop-shadow(0 0 16px rgba(212, 175, 55, 0.22));
+  user-select: none;
+}
+
+.brand-tagline {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.65rem, 0.9vw, 0.85rem);
+  letter-spacing: 0.45em;
+  color: var(--color-gold-500);
+  margin-top: 0.8rem;
+  padding-left: clamp(0.4em, 1.3vw, 0.6em);
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+/* ==========================================================================
+   INTERACTIVE SINGLE-CLICK HERO ACTION CUE
+   ========================================================================== */
+.hero-action-cue {
+  position: absolute;
+  bottom: 2.8rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 25;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.9rem;
+  transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s ease;
+  pointer-events: auto;
+}
+
+.hero-action-cue.fading-out {
+  opacity: 0;
+  transform: translate(-50%, 15px);
+  pointer-events: none;
+  visibility: hidden;
+}
+
+.btn-hero-play {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 0.95rem 2.2rem;
+  background: radial-gradient(circle at 50% 0%, rgba(35, 30, 20, 0.88) 0%, rgba(12, 12, 16, 0.94) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.55);
+  border-radius: 50px;
+  color: var(--color-gold-100);
+  cursor: pointer;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.75), 0 0 25px rgba(212, 175, 55, 0.2);
+  transition: all 0.35s var(--ease-cinematic);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.btn-hero-play:hover {
+  border-color: var(--color-gold-300);
+  background: radial-gradient(circle at 50% 0%, rgba(60, 50, 25, 0.96) 0%, rgba(18, 16, 20, 0.98) 100%);
+  transform: scale(1.03) translateY(-2px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.85), 0 0 35px rgba(212, 175, 55, 0.45);
+}
+
+.play-pulse-ring {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 54px;
+  border: 1px solid rgba(212, 175, 55, 0.4);
+  animation: heroPulse 2.4s cubic-bezier(0.24, 0, 0.38, 1) infinite;
+  pointer-events: none;
+}
+
+@keyframes heroPulse {
+  0% {
+    transform: scale(0.98);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.2;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+}
+
+.play-icon-glow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--color-gold-300) 0%, var(--color-gold-600) 100%);
+  color: #060608;
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+  flex-shrink: 0;
+}
+
+.play-text-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  gap: 0.2rem;
+}
+
+.play-main-text {
+  font-family: var(--font-brand);
+  font-size: 0.88rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: #ffffff;
+}
+
+.play-sub-text {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.16em;
+  color: var(--color-gold-300);
+  font-weight: 500;
+}
+
+.play-sparkle {
+  color: var(--color-gold-400);
+  font-size: 0.95rem;
+  animation: sparkleRotate 4s linear infinite;
+}
+
+@keyframes sparkleRotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.hero-click-hint {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.25em;
+  color: rgba(255, 255, 255, 0.55);
+  text-transform: uppercase;
+}
+
+.hint-mouse-icon {
+  font-size: 0.8rem;
+  filter: drop-shadow(0 0 6px var(--color-gold-glow));
+}
+
+/* Skip to Flacon Button (Visible during playback) */
+.btn-skip-cinematic {
+  position: absolute;
+  bottom: 2.2rem;
+  right: 2.5rem;
+  z-index: 26;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 1.2rem;
+  background: rgba(10, 10, 14, 0.7);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 20px;
+  color: var(--color-gold-300);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.btn-skip-cinematic.visible {
+  opacity: 0.85;
+  visibility: visible;
+}
+
+.btn-skip-cinematic:hover {
+  opacity: 1;
+  border-color: var(--color-gold-300);
+  background: rgba(212, 175, 55, 0.15);
+  color: #fff;
+}
+
+/* ==========================================================================
+   PHYSICAL SCROLL TRACK
+   ========================================================================== */
+.scroll-track {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   NEXT SECTION: RAZ PERFUME SHOWCASE
+   Left: Perfume Image Card with Perspectives
+   Right: Comprehensive Haute Parfumerie Details
+   ========================================================================== */
+.details-section {
+  position: relative;
+  z-index: 30;
+  background: radial-gradient(circle at 50% 0%, #12121b 0%, #060608 60%, #040406 100%);
+  border-top: 1px solid rgba(212, 175, 55, 0.25);
+  box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.9);
+  padding: 6.5rem 3rem 5rem;
+  overflow: hidden;
+}
+
+.details-section-glow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 800px;
+  height: 250px;
+  background: radial-gradient(ellipse at center, rgba(212, 175, 55, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.details-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* Section Header */
+.section-intro {
+  text-align: center;
+  max-width: 860px;
+  margin: 0 auto 5rem;
+}
+
+.gold-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.4rem 1.2rem;
+  background: rgba(212, 175, 55, 0.08);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 30px;
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  color: var(--color-gold-300);
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+}
+
+.badge-sparkle {
+  color: var(--color-gold-300);
+  font-size: 0.75rem;
+}
+
+.section-main-title {
+  font-family: var(--font-brand);
+  font-size: clamp(2.4rem, 4.5vw, 3.8rem);
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  color: #fff;
+  line-height: 1.15;
+  margin-bottom: 0.8rem;
+  text-transform: uppercase;
+}
+
+.section-main-sub {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(0.72rem, 1vw, 0.85rem);
+  letter-spacing: 0.25em;
+  color: var(--color-gold-500);
+  font-weight: 400;
+  margin-bottom: 1.8rem;
+}
+
+.section-title-line {
+  width: 90px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-gold-500), transparent);
+  margin: 0 auto;
+}
+
+/* Two-Column Grid: Left Image & Purchase Configurator, Right Details */
+.showcase-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3.5rem;
+  align-items: start;
+}
+
+/* LEFT COLUMN: Perfume Visual & Purchase Suite */
+.showcase-left {
+  position: relative;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.perfume-frame-card {
+  position: relative;
+  background: radial-gradient(circle at 50% 40%, rgba(25, 25, 35, 0.6) 0%, rgba(10, 10, 14, 0.85) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  border-radius: 12px;
+  padding: 2.2rem 1.8rem 1.8rem;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), inset 0 0 40px rgba(212, 175, 55, 0.05);
+  overflow: hidden;
+  text-align: center;
+}
+
+.frame-halo {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(212, 175, 55, 0.25) 0%, transparent 70%);
+  filter: blur(35px);
+  pointer-events: none;
+}
+
+.frame-tag-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  color: var(--color-gold-300);
+  margin-bottom: 1.5rem;
+  position: relative;
+  z-index: 2;
+}
+
+.tag-dot {
+  color: rgba(212, 175, 55, 0.4);
+}
+
+.frame-image-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.perfume-main-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.6s var(--ease-cinematic), opacity 0.4s ease;
+  filter: drop-shadow(0 15px 30px rgba(0, 0, 0, 0.9));
+}
+
+.perfume-frame-card:hover .perfume-main-image {
+  transform: scale(1.03);
+}
+
+.frame-tag-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.65);
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
+  position: relative;
+  z-index: 2;
+}
+
+.badge-icon {
+  color: var(--color-gold-500);
+  font-size: 0.75rem;
+}
+
+/* Perspectives Switcher */
+.perspective-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 0;
+}
+
+.perspective-label {
+  font-size: 0.6rem;
+  letter-spacing: 0.25em;
+  font-family: 'Montserrat', sans-serif;
+  color: rgba(255, 255, 255, 0.4);
+  margin-right: 0.2rem;
+}
+
+.btn-perspective {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.5rem 0.9rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.65);
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.p-num {
+  font-family: var(--font-brand);
+  font-size: 0.65rem;
+  color: var(--color-gold-500);
+}
+
+.p-name {
+  font-size: 0.6rem;
+  letter-spacing: 0.15em;
+}
+
+.btn-perspective:hover, .btn-perspective.active {
+  border-color: var(--color-gold-500);
+  background: rgba(212, 175, 55, 0.12);
+  color: var(--color-gold-100);
+  box-shadow: 0 0 14px rgba(212, 175, 55, 0.15);
+}
+
+.perspective-caption {
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  color: var(--color-gold-300);
+  font-family: 'Montserrat', sans-serif;
+  text-align: center;
+  margin-top: -0.6rem;
+  margin-bottom: 0.3rem;
+  font-style: italic;
+}
+
+/* RIGHT COLUMN: Perfume Details */
+.details-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+.product-identity {
+  border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+  padding-bottom: 2rem;
+}
+
+.product-provenance {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  color: var(--color-gold-500);
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+}
+
+.product-heading {
+  font-family: var(--font-brand);
+  font-size: clamp(2.8rem, 5.5vw, 4.4rem);
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  line-height: 1;
+  color: #fff;
+  background: linear-gradient(135deg, #fff7d6 0%, #e5c365 50%, #c29b38 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 18px rgba(212, 175, 55, 0.25));
+  margin-bottom: 0.5rem;
+}
+
+.product-subheading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.3em;
+  color: rgba(255, 255, 255, 0.7);
+  text-transform: uppercase;
+  margin-bottom: 1.8rem;
+}
+
+.price-allocation-bar {
+  display: flex;
+  align-items: center;
+  gap: 1.8rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 6px;
+  padding: 1rem 1.5rem;
+}
+
+.price-badge {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+}
+
+.price-amount {
+  font-family: var(--font-brand);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--color-gold-100);
+  line-height: 1;
+}
+
+.price-currency {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: var(--color-gold-500);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.price-divider {
+  width: 1px;
+  height: 35px;
+  background: rgba(212, 175, 55, 0.25);
+}
+
+.allocation-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.alloc-title {
+  font-size: 0.58rem;
+  letter-spacing: 0.25em;
+  color: var(--color-gold-500);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+.alloc-edition {
+  font-size: 0.82rem;
+  letter-spacing: 0.1em;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.alloc-edition strong {
+  color: var(--color-gold-300);
+  font-family: var(--font-brand);
+}
+
+/* Poetic Story */
+.product-story {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.product-story p {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: #d1d1d8;
+}
+
+.product-story strong {
+  color: var(--color-gold-100);
+}
+
+/* Olfactory Architecture */
+.olfactory-pyramid {
+  background: rgba(14, 14, 20, 0.7);
+  border: 1px solid rgba(212, 175, 55, 0.22);
+  border-radius: 8px;
+  padding: 1.8rem 2rem;
+}
+
+.pyramid-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.4rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.15);
+  padding-bottom: 0.8rem;
+}
+
+.pyramid-icon {
+  color: var(--color-gold-300);
+  font-size: 0.9rem;
+}
+
+.pyramid-title {
+  font-size: 0.72rem;
+  letter-spacing: 0.25em;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: var(--color-gold-300);
+}
+
+.notes-tier {
+  margin-bottom: 1.2rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.08);
+}
+
+.notes-tier:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.tier-label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 0.4rem;
+}
+
+.tier-name {
+  font-family: var(--font-brand);
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--color-gold-100);
+  letter-spacing: 0.1em;
+}
+
+.tier-sensation {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  color: var(--color-gold-500);
+  font-family: 'Montserrat', sans-serif;
+}
+
+.tier-ingredients {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  color: #bebec6;
+  line-height: 1.6;
+}
+
+.tier-ingredients .dot {
+  color: rgba(212, 175, 55, 0.4);
+}
+
+/* Specs Matrix */
+.specs-matrix {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+}
+
+.spec-cell {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 1rem 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  transition: border-color 0.3s ease;
+}
+
+.spec-cell:hover {
+  border-color: rgba(212, 175, 55, 0.35);
+}
+
+.spec-key {
+  font-size: 0.58rem;
+  letter-spacing: 0.22em;
+  color: var(--color-gold-500);
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+}
+
+.spec-val {
+  font-family: var(--font-brand);
+  font-size: 0.95rem;
+  color: #fff;
+  letter-spacing: 0.05em;
+}
+
+/* ==========================================================================
+   PURCHASE & WHATSAPP ORDER PANEL
+   ========================================================================== */
+.purchase-panel {
+  background: radial-gradient(circle at 50% 0%, rgba(24, 24, 34, 0.8) 0%, rgba(10, 10, 14, 0.95) 100%);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  border-radius: 12px;
+  padding: 2.2rem 2rem;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.7), inset 0 0 30px rgba(212, 175, 55, 0.04);
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.panel-header {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.18);
+}
+
+.panel-icon {
+  color: var(--color-gold-300);
+  font-size: 1rem;
+  filter: drop-shadow(0 0 6px var(--color-gold-glow));
+}
+
+.panel-title {
+  font-family: var(--font-brand);
+  font-size: 0.82rem;
+  letter-spacing: 0.22em;
+  color: var(--color-gold-100);
+  font-weight: 700;
+}
+
+.selector-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.group-label {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.2em;
+  font-family: 'Montserrat', sans-serif;
+  color: var(--color-gold-300);
+  font-weight: 600;
+}
+
+.label-number {
+  color: var(--color-gold-500);
+  font-family: var(--font-brand);
+}
+
+.option-grid {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.size-grid {
+  grid-template-columns: 1fr 1fr;
+}
+
+.pack-grid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.btn-select {
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  padding: 0.95rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  text-align: left;
+  cursor: pointer;
+  font-family: 'Montserrat', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.sel-primary {
+  font-family: var(--font-brand);
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.sel-sub {
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.sel-price {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--color-gold-300);
+  margin-top: 0.2rem;
+}
+
+.btn-select:hover, .btn-select.active {
+  border-color: var(--color-gold-500);
+  background: rgba(212, 175, 55, 0.12);
+  box-shadow: 0 0 16px rgba(212, 175, 55, 0.18);
+}
+
+.btn-select.active .sel-primary {
+  color: var(--color-gold-100);
+}
+
+/* Quantity Controls */
+.qty-control-row {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  flex-wrap: wrap;
+}
+
+.qty-stepper {
+  display: inline-flex;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.btn-qty {
+  background: transparent;
+  border: none;
+  color: var(--color-gold-300);
+  width: 40px;
+  height: 40px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.btn-qty:hover {
+  background: rgba(212, 175, 55, 0.2);
+  color: #fff;
+}
+
+.qty-number {
+  min-width: 48px;
+  text-align: center;
+  font-family: var(--font-brand);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #fff;
+  user-select: none;
+}
+
+.qty-quick-buttons {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.btn-quick-qty {
+  padding: 0.55rem 0.95rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.75);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+.btn-quick-qty:hover, .btn-quick-qty.active {
+  border-color: var(--color-gold-500);
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--color-gold-100);
+}
+
+/* Order Summary Card */
+.order-summary-card {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px dashed rgba(212, 175, 55, 0.3);
+  border-radius: 6px;
+  padding: 1.2rem 1.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78rem;
+}
+
+.sum-label {
+  letter-spacing: 0.18em;
+  color: var(--color-gold-500);
+  font-size: 0.62rem;
+  font-weight: 600;
+}
+
+.sum-value {
+  color: #fff;
+  letter-spacing: 0.08em;
+}
+
+.total-line {
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 0.75rem;
+  margin-top: 0.3rem;
+}
+
+.sum-total-label {
+  letter-spacing: 0.2em;
+  color: var(--color-gold-300);
+  font-family: var(--font-brand);
+  font-weight: 700;
+  font-size: 0.78rem;
+}
+
+.sum-total-amount {
+  font-family: var(--font-brand);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--color-gold-100);
+  text-shadow: 0 0 15px rgba(212, 175, 55, 0.35);
+}
+
+/* WhatsApp Order Action Button */
+.purchase-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.btn-whatsapp-order {
+  flex: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.9rem;
+  padding: 1.15rem 1.8rem;
+  background: linear-gradient(135deg, #25D366 0%, #1a9e52 50%, #0d6e37 100%);
+  color: #ffffff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.35);
+  transition: all 0.3s ease;
+}
+
+.btn-whatsapp-order:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #2cf477 0%, #20b85f 50%, #128c46 100%);
+  box-shadow: 0 15px 45px rgba(37, 211, 102, 0.55);
+}
+
+.wa-icon {
+  display: flex;
+  align-items: center;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
+}
+
+.btn-wa-badge {
+  background: rgba(0, 0, 0, 0.3);
+  padding: 0.25rem 0.65rem;
+  border-radius: 20px;
+  font-family: var(--font-brand);
+  font-size: 0.85rem;
+  letter-spacing: 0.05em;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+/* WhatsApp Target Bar */
+.whatsapp-target-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.62rem;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.5);
+  padding-top: 0.4rem;
+}
+
+.target-phone {
+  color: var(--color-gold-300);
+  font-weight: 600;
+}
+
+.btn-edit-phone {
+  background: transparent;
+  border: none;
+  color: var(--color-gold-500);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.12em;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.2s ease;
+}
+
+.btn-edit-phone:hover {
+  color: #fff;
+}
+
+.btn-gold-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1.1rem 2.8rem;
+  background: linear-gradient(135deg, var(--color-gold-100) 0%, var(--color-gold-300) 50%, var(--color-gold-500) 100%);
+  color: #060608;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+  box-shadow: 0 10px 35px rgba(212, 175, 55, 0.35);
+  transition: all 0.3s ease;
+}
+
+.btn-gold-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 45px rgba(212, 175, 55, 0.6);
+  background: var(--color-gold-100);
+}
+
+.btn-arrow {
+  font-size: 1.1rem;
+  transition: transform 0.3s ease;
+}
+
+.btn-gold-primary:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+.btn-gold-ghost {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  padding: 1.1rem 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  color: var(--color-gold-100);
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  border-radius: 2px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-gold-ghost:hover {
+  border-color: var(--color-gold-300);
+  background: rgba(212, 175, 55, 0.1);
+  box-shadow: 0 0 25px var(--color-gold-glow);
+  transform: translateY(-2px);
+}
+
+.btn-icon {
+  font-size: 1rem;
+}
+
+/* Concierge Guarantee */
+.concierge-guarantee {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.guarantee-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.g-icon {
+  color: var(--color-gold-500);
+  font-size: 0.75rem;
+}
+
+/* Footer Note */
+.showcase-footer {
+  margin-top: 7rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-crest {
+  color: var(--color-gold-300);
+  font-size: 1.2rem;
+  margin-bottom: 0.4rem;
+}
+
+.footer-title {
+  font-family: var(--font-brand);
+  font-size: 0.75rem;
+  letter-spacing: 0.3em;
+  color: #fff;
+}
+
+.footer-copy {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+/* ==========================================================================
+   LUXURY RESERVATION MODAL
+   ========================================================================== */
+.luxury-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s var(--ease-cinematic), visibility 0.4s ease;
+}
+
+.luxury-modal.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 4, 6, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.modal-dialog {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 520px;
+  background: radial-gradient(circle at top, #161622 0%, #08080c 100%);
+  border: 1px solid var(--color-gold-300);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.95), 0 0 50px rgba(212, 175, 55, 0.2);
+  border-radius: 8px;
+  padding: 2.5rem 2.2rem;
+  text-align: center;
+  transform: translateY(0) scale(1);
+  transition: transform 0.4s var(--ease-cinematic);
+}
+
+.luxury-modal.hidden .modal-dialog {
+  transform: translateY(20px) scale(0.96);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.6);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+  border-color: var(--color-gold-300);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.modal-emblem {
+  font-size: 1.8rem;
+  color: var(--color-gold-300);
+  display: block;
+  margin-bottom: 0.4rem;
+  filter: drop-shadow(0 0 10px var(--color-gold-glow));
+}
+
+.modal-eyebrow {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.3em;
+  color: var(--color-gold-500);
+  margin-bottom: 0.5rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.modal-title {
+  font-family: var(--font-brand);
+  font-size: 1.8rem;
+  letter-spacing: 0.2em;
+  color: #fff;
+  margin-bottom: 0.3rem;
+}
+
+.modal-subtitle {
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.6);
+  font-family: 'Montserrat', sans-serif;
+  margin-bottom: 1.6rem;
+}
+
+.bottle-preview-card {
+  background: rgba(212, 175, 55, 0.06);
+  border: 1px dashed rgba(212, 175, 55, 0.3);
+  border-radius: 6px;
+  padding: 0.9rem 1.2rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.bottle-badge {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  color: #fff;
+}
+
+.bottle-badge strong {
+  color: var(--color-gold-300);
+  font-family: var(--font-brand);
+}
+
+.concentration-tag {
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  color: var(--color-gold-500);
+}
+
+.reserve-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  color: var(--color-gold-300);
+  margin-bottom: 0.4rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: var(--color-gold-300);
+  box-shadow: 0 0 12px rgba(212, 175, 55, 0.25);
+}
+
+.submit-reserve {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.reserve-success {
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.reserve-success.hidden {
+  display: none;
+}
+
+.reserve-success .success-icon {
+  font-size: 2.5rem;
+  color: var(--color-gold-300);
+  margin-bottom: 0.8rem;
+  filter: drop-shadow(0 0 15px var(--color-gold-glow));
+}
+
+.reserve-success h4 {
+  font-family: var(--font-brand);
+  font-size: 1.4rem;
+  letter-spacing: 0.2em;
+  color: var(--color-gold-100);
+  margin-bottom: 0.8rem;
+}
+
+.success-msg {
+  font-size: 0.85rem;
+  line-height: 1.7;
+  color: #ceced4;
+  margin-bottom: 1.8rem;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.success-msg strong {
+  color: var(--color-gold-300);
+  font-family: var(--font-brand);
+}
+
+.close-success {
+  cursor: pointer;
+  margin: 0 auto;
+}
+
+/* ==========================================================================
+   RESPONSIVE COMPOSITION
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .site-header {
+    padding: 1.2rem 2rem;
+  }
+  
+  .header-nav .nav-item {
+    display: none;
+  }
+
+  .canvas-vignette {
+    background:
+      radial-gradient(ellipse at 40% 50%, transparent 45%, rgba(6, 6, 8, 0.4) 75%, var(--color-bg) 100%),
+      linear-gradient(to right, transparent 35%, rgba(6, 6, 8, 0.5) 60%, rgba(6, 6, 8, 0.9) 85%, var(--color-bg) 100%),
+      linear-gradient(to bottom, rgba(6, 6, 8, 0.5) 0%, transparent 15%, transparent 85%, var(--color-bg) 100%);
+  }
+  
+  .brand-container {
+    right: clamp(4vw, 7vw, 10vw);
+  }
+  
+  .brand-name {
+    font-size: clamp(3.2rem, 7.5vw, 5.5rem);
+    letter-spacing: 0.4em;
+    padding-left: 0.4em;
+  }
+
+  .showcase-grid {
+    grid-template-columns: 1fr;
+    gap: 3.5rem;
+  }
+
+  .showcase-left {
+    position: relative;
+    top: 0;
+    max-width: 650px;
+    margin: 0 auto;
+  }
+
+  .details-section {
+    padding: 5rem 2rem 4rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .canvas-vignette {
+    background:
+      radial-gradient(ellipse at center, transparent 40%, rgba(6, 6, 8, 0.5) 80%, var(--color-bg) 100%),
+      linear-gradient(to bottom, rgba(6, 6, 8, 0.6) 0%, transparent 20%, transparent 75%, var(--color-bg) 100%);
+  }
+
+  .brand-container {
+    right: auto;
+    left: 50%;
+    top: auto;
+    bottom: 8vh;
+    transform: translate(-50%, 0);
+    text-align: center;
+    width: 100%;
+  }
+
+  .brand-name {
+    font-size: clamp(2.2rem, 9.5vw, 3.4rem);
+    letter-spacing: 0.38em;
+    padding-left: 0.38em;
+    text-align: center;
+  }
+
+  .brand-tagline {
+    padding-left: 0;
+    text-align: center;
+    font-size: 0.65rem;
+  }
+
+  .specs-matrix, .size-grid, .pack-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .price-allocation-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .price-divider {
+    display: none;
+  }
+
+  .purchase-actions {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .btn-whatsapp-order, .btn-gold-ghost {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn-gold-primary, .btn-gold-ghost {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .modal-dialog {
+    padding: 1.8rem 1.2rem;
+  }
+}
