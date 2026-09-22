@@ -2,5 +2,12 @@
 frames/
 public/
 node_modules/
+server.js
+package.json
+serve.bat
+serve.ps1
+npv.bat
+npv.cmd
 .DS_Store
 Thumbs.db
+.vercelignore

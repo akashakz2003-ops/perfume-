@@ -1,9 +1,0 @@
-{
-  "name": "raz-oud-3d-hero",
-  "version": "1.0.0",
-  "description": "RAZ Oud Luxury 3D Video Hero Scroll Experience",
-  "scripts": {
-    "start": "node server.js",
-    "dev": "node server.js"
-  }
-}
